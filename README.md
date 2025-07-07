@@ -36,3 +36,5 @@ http: For handling API requests and network communication.
 flutter_secure_storage: Used to securely store sensitive data like tokens on the device.
 
 provider: A simple and effective state management solution used to manage app state and dependency injection.
+
+

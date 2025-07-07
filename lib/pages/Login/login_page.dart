@@ -36,43 +36,45 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(title: const Text('Login')),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: _usernameController,
-              keyboardType: TextInputType.emailAddress,
-              decoration:AppDecorations.textFieldDecoration(context).copyWith(hintText: 'Enter email id'),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _passwordController,
-              obscureText: auth.isObscure,
-              decoration: AppDecorations.textFieldDecoration(context).copyWith(
-                hintText: 'Enter password',
-
-                suffixIcon: IconButton(
-                  onPressed: auth.toggleVisibility,
-                  icon:
-                      auth.isObscure
-                          ? Icon(Icons.remove_red_eye_rounded)
-                          : Icon(CupertinoIcons.eye_slash_fill),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              TextField(
+                controller: _usernameController,
+                keyboardType: TextInputType.emailAddress,
+                decoration:AppDecorations.textFieldDecoration(context).copyWith(hintText: 'Enter email id'),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: _passwordController,
+                obscureText: auth.isObscure,
+                decoration: AppDecorations.textFieldDecoration(context).copyWith(
+                  hintText: 'Enter password',
+        
+                  suffixIcon: IconButton(
+                    onPressed: auth.toggleVisibility,
+                    icon:
+                        auth.isObscure
+                            ? Icon(Icons.remove_red_eye_rounded)
+                            : Icon(CupertinoIcons.eye_slash_fill),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 24),
-           AppPrimaryButton(
-              key: _buttonKey,
-                  onPressed: _submit,
-                  child: const Text('Login'),
-                ),
-            if (auth.error != null) ...[
-              const SizedBox(height: 12),
-              Text(auth.error!, style: const TextStyle(color: Colors.red)),
+              const SizedBox(height: 24),
+             AppPrimaryButton(
+                key: _buttonKey,
+                    onPressed: _submit,
+                    child: const Text('Login'),
+                  ),
+              if (auth.error != null) ...[
+                const SizedBox(height: 12),
+                Text(auth.error!, style: const TextStyle(color: Colors.red)),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );

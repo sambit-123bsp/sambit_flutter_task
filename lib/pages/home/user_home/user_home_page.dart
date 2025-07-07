@@ -30,6 +30,7 @@ class _UserHomePageState extends State<UserHomePage> {
     final userProvider = Provider.of<UserProvider>(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text("User Profile"),
       ),
