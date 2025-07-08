@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:sambit_project/api_service/api_routes.dart';
 import 'package:sambit_project/main.dart';
@@ -29,7 +28,11 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> login(String username, String password, GlobalKey<AppPrimaryButtonState> key) async {
+  Future<void> login(
+    String username,
+    String password,
+    GlobalKey<AppPrimaryButtonState> key,
+  ) async {
     key.currentState?.showLoader();
     _error = null;
     notifyListeners();
@@ -46,10 +49,18 @@ class AuthProvider extends ChangeNotifier {
       await SecureStorageService().setRole(user.role.value);
       _isLoggedIn = true;
       navigatorKey.currentState?.pushReplacement(
-        MaterialPageRoute(builder: (context) => user.role==UserRole.User?UserHomePage():AdminHomePage()),
+        MaterialPageRoute(
+          builder:
+              (context) =>
+                  user.role == UserRole.User ? UserHomePage() : AdminHomePage(),
+        ),
       );
     } else {
-      _error = response.message;
+      if (response.statusCode == null) {
+        _error = "Something went wrong";
+      } else {
+        _error = response.message;
+      }
     }
     key.currentState?.hideLoader();
     _isLoading = false;
