@@ -23,4 +23,9 @@ class ApiResponse<T> {
     statusCode: code,
     success: false,
   );
+
+  @override
+  String toString() {
+   return "$statusCode $message";
+  }
 }
