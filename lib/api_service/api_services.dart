@@ -10,7 +10,7 @@ class ApiService {
 
   ApiService._internal();
 
-  final String _baseUrl = 'http://localhost:3030';
+  final String _baseUrl = 'http://13.127.150.230:3030';
 
   Future<Map<String, String>> _buildHeaders({bool withAuth = true}) async {
     final headers = {'Content-Type': 'application/json'};
